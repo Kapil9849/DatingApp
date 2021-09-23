@@ -1,3 +1,4 @@
+using System;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -5,12 +6,14 @@ using API.Data;
 using API.DTOs;
 using API.Entities;
 using API.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
-    public class AccountController : BaseApiController
+    
+    public class AccountController: BaseApiController
     {
         private readonly DataContext _context;
         private readonly ITokenService _token;
@@ -44,6 +47,7 @@ namespace API.Controllers
             };
         }
 
+        
         [HttpPost("login")]
         public async Task<ActionResult<UserDto>> Login(LoginDto dto)
         {
